@@ -1,7 +1,7 @@
 # Analysis of unimodal Music Emotion Recognition using audio features
 
 This repository presents different approaches to the Music Emotion Recognition task from a regression perspective, using Convolutional Neural Networks trained on MFCC audio features.  
-Considering a 2D representation of emotions defined by **valence** and **arousal** dimensions, two types of models are created:  
+Considering the 2D representation of emotions defined by **valence** and **arousal** dimensions [[Circumplex Model of Affect]](https://www.researchgate.net/publication/235361517_A_Circumplex_Model_of_Affect), two types of models are created:  
  - ***2D-output*** model : predicts values for both valence and arousal  
  - ***1D-output*** models : separately predict values for valence and arousal, respectively
 
@@ -25,36 +25,43 @@ The data directory should have the following structure:
     │   ├── static_annotations.csv
 ```  
 
-## Usage
+## Usage  
 
 ### 1. Prepare data
 
 #### run `python main.py --mode=preprocess`  
-Resume training by specifying a valid value for `--restore_epoch`.  
-> The model saved as `Models/checkpoint_<restore_epoch>.pt` will be loaded
 
-<!-- ### 2. Train
+> Extract annotations and audio names from `static_annotations.csv`  
+> Augment dataset
+> Extract MFCC features from waveforms
+> Make train and test sets
+
+### 2. Train
 
 #### run `python main.py`  
 
+There are three options for training:  
+ - 2D-output model: `--dimension=both` will create a model to predict both valence and arousal, with filter size defined in `--params_dict`  
+ - valence model: `--dimension=valence` will create a model to predict valence with filter size defined in `--valence_params_dict`  
+ - arousal model: `--dimension=arousal` will create a model to predict valence with filter size defined in `--arousal_params_dict`  
+  
 Control the training by modifying the default values for the following parameters:
 ```
 --device = cuda (train on cuda)  
 --log_interval = 1 (print train & validation loss each epoch)
---checkpoint_interval = 100 (save trained model and optimizer parameters every 100 epochs)
---num_epochs = 500
-```
+--num_epochs = 2000
+```  
 
 ### 3. Test
 
-#### run `python main.py --mode=test --restore_epoch=* --test_ct_names=*`  
-Test the model saved at training epoch `--restore_epoch` on CT images specified.
-> `--test_ct_names` accepts a list of the CT images without the `.npy` extension.
-> > for example, the CT image located at `Data/Test/ct_sample1.npy` will be passed as `ct_sample1`.  
+#### run `python main.py --mode=test --dimension=*`  
+  
+> The model saved as `Models/model_<dimension>.pt` will be loaded.  
+> > for the 2D-output model: `--dimension=both`  
+> > for the valence model: `--dimension=valence`  
+> > for the arousal model: `--dimension=arousal` 
 
-> The model saved as `Models/checkpoint_<restore_epoch>.pt` will be loaded.
-
-<br/>   -->
+<br/>  
 
 ### Tools  
 `PyTorch`, `librosa`
