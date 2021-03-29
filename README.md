@@ -57,9 +57,9 @@ Control the training by modifying the default values for the following parameter
 #### run `python main.py --mode=test --dimension=*`  
   
 > The model saved as `Models/model_<dimension>.pt` will be loaded.  
-> > for the 2D-output model: `--dimension=both`  
-> > for the valence model: `--dimension=valence`  
-> > for the arousal model: `--dimension=arousal` 
+> - for the 2D-output model: `--dimension=both`  
+> - for the valence model: `--dimension=valence`  
+> - for the arousal model: `--dimension=arousal` 
 
 <br/>  
 
