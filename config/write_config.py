@@ -1,3 +1,6 @@
+"""
+Writes arguments in JSON dictionary.
+"""
 import json
 
 args_dict = {'data_dir': {'type': 'str',

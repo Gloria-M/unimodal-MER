@@ -1,9 +1,18 @@
+"""
+This module contains the Convolutional NN model architecture
+"""
 import torch
 import torch.nn as nn
 
 
 class AudioNet(nn.Module):
+    """
+    Model architecture and the forward-pass are defined in this class.
+    """
     def __init__(self, params_dict):
+        """
+        :param params_dict: Dictionary with information about the architecture
+        """
         super().__init__()
 
         in_ch = params_dict['in_ch']

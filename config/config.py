@@ -1,10 +1,17 @@
+"""
+This module contains methods for converting a JSON dictionary to command line arguments.
+"""
 import argparse
 import json
 
 
 class ArgsFromJSON:
     def __init__(self, config_file_path):
+        """
+        :param config_file_path: path to JSON dictionary
+        """
 
+        # Load the dictionary
         with open(config_file_path) as infile:
             self.config_dict = json.load(infile)
 
